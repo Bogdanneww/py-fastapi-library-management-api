@@ -18,11 +18,13 @@ from schemas import (
     BookSchema,
     BookCreateSchema
 )
-from db.database import SessionLocal
-from db.models import Author
+from database import SessionLocal, Base, engine
+from models import Author, Book
 
 
 app = FastAPI()
+
+Base.metadata.create_all(bind=engine)
 
 
 def get_db() -> Iterator[Session]:

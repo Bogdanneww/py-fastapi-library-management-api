@@ -23,10 +23,10 @@ def upgrade() -> None:
     # Create a new table with the correct schema
     op.create_table('books_new',
         sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('title', sa.String(), nullable=True),
+        sa.Column('title', sa.String(), nullable=False),
         sa.Column('summary', sa.String(), nullable=True),
         sa.Column('publication_date', sa.Date(), nullable=True),  # Changed to Date
-        sa.Column('author_id', sa.Integer(), nullable=True),
+        sa.Column('author_id', sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(['author_id'], ['authors.id'], ),
         sa.PrimaryKeyConstraint('id')
     )
@@ -47,10 +47,10 @@ def downgrade() -> None:
     # Create table with datetime format
     op.create_table('books_new',
         sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('title', sa.String(), nullable=True),
+        sa.Column('title', sa.String(), nullable=False),
         sa.Column('summary', sa.String(), nullable=True),
         sa.Column('publication_date', sa.DateTime(), nullable=True),  # Back to DateTime
-        sa.Column('author_id', sa.Integer(), nullable=True),
+        sa.Column('author_id', sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(['author_id'], ['authors.id'], ),
         sa.PrimaryKeyConstraint('id')
     )

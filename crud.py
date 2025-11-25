@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from schemas import AuthorCreateSchema, BookCreateSchema
-from db.models import Author, Book
+from models import Author, Book
 
 
 def get_all_authors_with_pagination(

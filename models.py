@@ -3,7 +3,7 @@ from datetime import date
 from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from db.database import Base
+from database import Base
 
 
 class Author(Base):
@@ -20,7 +20,7 @@ class Book(Base):
     __tablename__ = "books"
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    title: Mapped[str] = mapped_column(unique=True, nullable=False)
+    title: Mapped[str] = mapped_column(nullable=False)
     summary: Mapped[str] = mapped_column(nullable=True)
     publication_date: Mapped[date] = mapped_column(nullable=True)
     author_id: Mapped[int] = mapped_column(
