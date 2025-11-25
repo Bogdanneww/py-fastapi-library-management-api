@@ -28,7 +28,8 @@ def upgrade() -> None:
         sa.Column('publication_date', sa.Date(), nullable=True),  # Changed to Date
         sa.Column('author_id', sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(['author_id'], ['authors.id'], ),
-        sa.PrimaryKeyConstraint('id')
+        sa.PrimaryKeyConstraint('id'),
+        sa.UniqueConstraint('title')
     )
 
     # Copy data from old table to new table, converting datetime to date
@@ -52,7 +53,8 @@ def downgrade() -> None:
         sa.Column('publication_date', sa.DateTime(), nullable=True),  # Back to DateTime
         sa.Column('author_id', sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(['author_id'], ['authors.id'], ),
-        sa.PrimaryKeyConstraint('id')
+        sa.PrimaryKeyConstraint('id'),
+        sa.UniqueConstraint('title')
     )
 
     # Copy data back (date will be converted back to datetime automatically)

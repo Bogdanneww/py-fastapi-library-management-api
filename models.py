@@ -20,7 +20,7 @@ class Book(Base):
     __tablename__ = "books"
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    title: Mapped[str] = mapped_column(nullable=False)
+    title: Mapped[str] = mapped_column(unique=True, nullable=False)
     summary: Mapped[str] = mapped_column(nullable=True)
     publication_date: Mapped[date] = mapped_column(nullable=True)
     author_id: Mapped[int] = mapped_column(
